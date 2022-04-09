@@ -14,6 +14,10 @@ export default {
         return API.get(`${id}`)
     },
 
+    addBook: (body) => {
+        return API.post('', body)
+    },
+
     editBook: (id) => {
         return API.put({ id })
     },

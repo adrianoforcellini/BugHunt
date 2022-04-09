@@ -5,7 +5,7 @@
         <b-navbar-nav>
           <div class="nav-bar-items-container">
             <b-nav-item to="" class="img-container">
-              <img src="@/assets/white-logo.png" width="100%" @click="onClick" />
+              <img src="@/assets/white-logo.png" width="100%"/>
             </b-nav-item>
             <div class="nav-links-container">
               <b-nav-item to="bookslist">Listar Livros</b-nav-item>
