@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <NavBar />
-    <Form />
+    <Form :onSubmit="onSubmit" />
   </div>
 </template>
 
@@ -12,6 +12,18 @@ import Form from "@/components/Form";
 import API from "@/services/APIs";
 export default {
   name: "AddBook",
-  components: { NavBar, Form }
+  components: { NavBar, Form },
+  data() {
+    return {
+    onSubmit(form) {
+      const { title, author, checked } = form;
+      const body = {
+        title,
+        author,
+        available: checked[0] === "available" ? true : false
+      };
+      API.addBook(body).then(alert("Livro Adicionado Á Lista"));
+    }
+  }}
 };
 </script>

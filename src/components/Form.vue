@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+    <b-form @submit="onSubmit(form)" @reset="onReset" v-if="show">
       <b-form-group id="input-group-1" label="Título" label-for="input-1">
         <b-form-input
           id="input-1"
@@ -46,13 +46,10 @@ export default {
       show: true
     };
   },
+  props : {
+      onSubmit: Function
+  },
   methods: {
-    onSubmit(event) {
-      const {title, author, checked } = this.form
-      const body = {title, author, available : checked[0] === "available"? true : false}
-      event.preventDefault();
-      API.addBook(body)
-    },
     onReset(event) {
       event.preventDefault();
       this.form.title = "";
