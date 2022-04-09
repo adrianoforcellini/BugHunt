@@ -11,7 +11,7 @@ export default {
     },
 
     getById: (id) => {
-        return API.get({ id })
+        return API.get(`${id}`)
     },
 
     editBook: (id) => {
@@ -23,7 +23,7 @@ export default {
     },
 
     deleteBook: (id) => {
-        return API.delete({ id })
+        return API.delete(`${id}`)
     },
 
     deleteAll: () => {
