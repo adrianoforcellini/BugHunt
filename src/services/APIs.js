@@ -19,7 +19,7 @@ export default {
     },
 
     editBook: (id) => {
-        return API.put({ id })
+        return API.put(`${id}`, body)
     },
 
     editAvailable: (id) => {
