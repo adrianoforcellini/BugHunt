@@ -16,7 +16,7 @@
       <b-button variant="danger" @click="initDeleting">DELETAR</b-button>
     </div>
     <div v-if="isDeleting">
-      <DeleteForm />
+      <DeleteForm  :id="form.id" />
     </div>
   </div>
 </template>
