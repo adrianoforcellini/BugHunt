@@ -13,6 +13,10 @@
     </b-form>
     <div v-if="haveId">
       <Form :onSubmit="onSubmit" :id="form.id" :placeholder="placeholder" />
+      <b-button variant="danger" @click="initDeleting">DELETAR</b-button>
+    </div>
+    <div v-if="isDeleting">
+      <DeleteForm />
     </div>
   </div>
 </template>
@@ -20,19 +24,24 @@
 <script>
 import NavBar from "@/components/NavBar";
 import Form from "@/components/Form";
-
+import DeleteForm from "@/components/DeleteForm";
 import API from "@/services/APIs";
 export default {
   name: "EditBook",
-  components: { NavBar, Form },
+  components: { NavBar, Form, DeleteForm },
   methods: {
     initEditing() {
       this.haveId = true;
+    },
+    initDeleting() {
+      this.isDeleting = true;
+      this.haveId = false;
     }
   },
   data() {
     return {
       haveId: false,
+      isDeleting: false,
       form: {
         id: ""
       },
@@ -48,11 +57,11 @@ export default {
         };
         if (body.title.length === 0) {
           return API.editAvailable(id, { available: body.available })
-            .then(({data}) => alert(data.message))
+            .then(({ data }) => alert(data.message))
             .catch(error => alert(error));
         }
         return API.editBook(id, body)
-          .then(({data}) => alert(data.message))
+          .then(({ data }) => alert(data.message))
           .catch(error => alert(error));
       }
     };

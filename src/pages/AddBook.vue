@@ -16,7 +16,8 @@ export default {
   data() {
     return {
       placeholder: "Escreva aqui o título do livro",
-      onSubmit(form) {
+      onSubmit(id, form) {
+        console.log(form)
         const { title, author, checked } = form;
         const body = {
           title,
