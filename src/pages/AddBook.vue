@@ -18,6 +18,12 @@ export default {
       placeholder: "Escreva aqui o título do livro",
       onSubmit(id, form) {
         const { title, author, checked } = form;
+        if (title.length < 3 || title.length > 60) {
+          return alert("O título deve ter entre 3 e 60 caracteres.");
+        }
+        if (author.length < 3 || author.length > 60) {
+          return alert("O nome do autor deve ter entre 3 e 60 caracteres.");
+        }
         const body = {
           title,
           author,

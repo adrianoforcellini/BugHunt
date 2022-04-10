@@ -16,10 +16,7 @@
         ></b-form-input>
       </b-form-group>
       <b-form-group id="input-group-4">
-        <b-form-checkbox-group
-          v-model="form.checked"
-          id="checkboxes-4"
-        >
+        <b-form-checkbox-group v-model="form.checked" id="checkboxes-4">
           <b-form-checkbox value="available">Livro Disponível</b-form-checkbox>
         </b-form-checkbox-group>
       </b-form-group>
@@ -30,8 +27,8 @@
 </template>
 
 <script>
-import NavBar from "@/components/NavBar";
-import API from "@/services/APIs";
+import { minLength, maxLength } from 'vuelidate/lib/validators'
+
 export default {
   name: "Form",
   data() {
@@ -44,10 +41,10 @@ export default {
       show: true
     };
   },
-  props : {
-      onSubmit: Function,
-      id: String,
-      placeholder: String
+  props: {
+    onSubmit: Function,
+    id: String,
+    placeholder: String
   },
   methods: {
     onReset(event) {
@@ -60,7 +57,7 @@ export default {
       this.$nextTick(() => {
         this.show = true;
       });
-    }
+    },
   }
 };
 </script>
