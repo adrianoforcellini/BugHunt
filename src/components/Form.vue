@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <b-form @submit="onSubmit(form)" @reset="onReset" v-if="show">
+    <b-form @submit="onSubmit(id, form)" @reset="onReset" v-if="show">
       <b-form-group id="input-group-1" label="Título" label-for="input-1">
         <b-form-input
           id="input-1"
@@ -47,7 +47,8 @@ export default {
     };
   },
   props : {
-      onSubmit: Function
+      onSubmit: Function,
+      id: String
   },
   methods: {
     onReset(event) {

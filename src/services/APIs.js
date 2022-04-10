@@ -18,7 +18,7 @@ export default {
         return API.post('', body)
     },
 
-    editBook: (id) => {
+    editBook: (id, body) => {
         return API.put(`${id}`, body)
     },
 

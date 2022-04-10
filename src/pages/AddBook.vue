@@ -22,7 +22,7 @@ export default {
         author,
         available: checked[0] === "available" ? true : false
       };
-      API.addBook(body).then(alert("Livro Adicionado Á Lista"));
+      API.addBook(body).then(alert("Livro Adicionado Á Lista")).catch(error=> alert(error));
     }
   }}
 };
