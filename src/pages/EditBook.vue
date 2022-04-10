@@ -16,7 +16,7 @@
       <b-button variant="danger" @click="initDeleting">DELETAR</b-button>
     </div>
     <div v-if="isDeleting">
-      <DeleteForm  :id="form.id" />
+      <DeleteForm :id="form.id" />
     </div>
   </div>
 </template>
@@ -57,11 +57,11 @@ export default {
         };
         if (body.title.length === 0) {
           return API.editAvailable(id, { available: body.available })
-            .then(({ data }) => alert(data.message))
+            .then(({ data: { message } }) => alert(message))
             .catch(error => alert(error));
         }
         return API.editBook(id, body)
-          .then(({ data }) => alert(data.message))
+          .then(({ data: { message } }) => alert(message))
           .catch(error => alert(error));
       }
     };

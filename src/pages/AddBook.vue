@@ -8,8 +8,8 @@
 <script>
 import NavBar from "@/components/NavBar";
 import Form from "@/components/Form";
-
 import API from "@/services/APIs";
+
 export default {
   name: "AddBook",
   components: { NavBar, Form },
@@ -17,7 +17,6 @@ export default {
     return {
       placeholder: "Escreva aqui o título do livro",
       onSubmit(id, form) {
-        console.log(form)
         const { title, author, checked } = form;
         const body = {
           title,
