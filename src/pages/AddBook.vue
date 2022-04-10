@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <NavBar />
-    <Form :onSubmit="onSubmit" />
+    <Form :onSubmit="onSubmit" :placeholder="placeholder" />
   </div>
 </template>
 
@@ -15,15 +15,19 @@ export default {
   components: { NavBar, Form },
   data() {
     return {
-    onSubmit(form) {
-      const { title, author, checked } = form;
-      const body = {
-        title,
-        author,
-        available: checked[0] === "available" ? true : false
-      };
-      API.addBook(body).then(alert("Livro Adicionado Á Lista")).catch(error=> alert(error));
-    }
-  }}
+      placeholder: "Escreva aqui o título do livro",
+      onSubmit(form) {
+        const { title, author, checked } = form;
+        const body = {
+          title,
+          author,
+          available: checked[0] === "available" ? true : false
+        };
+        API.addBook(body)
+          .then(alert("Livro Adicionado Á Lista"))
+          .catch(error => alert(error));
+      }
+    };
+  }
 };
 </script>

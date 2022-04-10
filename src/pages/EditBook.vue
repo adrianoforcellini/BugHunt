@@ -12,7 +12,7 @@
       </b-form-group>
     </b-form>
     <div v-if="haveId">
-      <Form :onSubmit="onSubmit" :id='form.id'/>
+      <Form :onSubmit="onSubmit" :id="form.id" :placeholder="placeholder" />
     </div>
   </div>
 </template>
@@ -36,6 +36,9 @@ export default {
       form: {
         id: ""
       },
+      placeholder:
+        "Para alterar apenas a disponibilidade, mantenha os inputs em branco e utilize apenas o checkbox. Não sendo este o caso, escreva aqui o título do livro",
+
       onSubmit(id, form) {
         const { title, author, checked } = form;
         const body = {
@@ -43,8 +46,13 @@ export default {
           author,
           available: checked[0] === "available" ? true : false
         };
-        API.editBook(id, body)
-          .then(alert("Livro Alterado Com Sucesso"))
+        if (body.title.length === 0) {
+          return API.editAvailable(id, { available: body.available })
+            .then(({data}) => alert(data.message))
+            .catch(error => alert(error));
+        }
+        return API.editBook(id, body)
+          .then(({data}) => alert(data.message))
           .catch(error => alert(error));
       }
     };

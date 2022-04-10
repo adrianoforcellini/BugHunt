@@ -22,8 +22,9 @@ export default {
         return API.put(`${id}`, body)
     },
 
-    editAvailable: (id) => {
-        return API.put(`available/${id}`)
+    editAvailable: (id, body) => {
+        console.log(id, body)
+        return API.put(`available/${id}`, body)
     },
 
     deleteBook: (id) => {

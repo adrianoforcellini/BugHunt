@@ -5,8 +5,7 @@
         <b-form-input
           id="input-1"
           v-model="form.title"
-          placeholder="Escreva aqui o título do livro."
-          required
+          :placeholder="placeholder"
         ></b-form-input>
       </b-form-group>
       <b-form-group id="input-group-2" label="Autor:" label-for="input-2">
@@ -14,7 +13,6 @@
           id="input-2"
           v-model="form.author"
           placeholder="Escreva aqui o nome do autor do livro."
-          required
         ></b-form-input>
       </b-form-group>
       <b-form-group id="input-group-4">
@@ -48,7 +46,8 @@ export default {
   },
   props : {
       onSubmit: Function,
-      id: String
+      id: String,
+      placeholder: String
   },
   methods: {
     onReset(event) {

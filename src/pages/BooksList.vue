@@ -11,7 +11,8 @@
           </b-form-input>
         </b-form>
       </div>
-      <b-button @click="onClick">Listar Todos</b-button>
+      <b-button @click="listAvailables">Listar Disponíveis</b-button>
+      <b-button @click="listAll">Listar Todos</b-button>
     </div>
     <b-table striped hover :items="books"></b-table>
   </div>
@@ -41,13 +42,16 @@ export default {
         .then(({ data }) => (this.books = [data]))
         .catch(() => alert("Nenhum livro encontrado, verifique o id"));
     },
-    onClick() {
-      this.listAll();
-    },
+
     listAll() {
       return API.listAll().then(({ data }) => (this.books = data));
+    },
+
+    listAvailables() {
+      return API.listAvailables().then(({ data }) => (this.books = data));
     }
   },
+
   mounted() {
     this.listAll();
   }
@@ -58,6 +62,6 @@ export default {
   display: flex;
 }
 .form {
-  width: 90vw;
+  width: 78vw;
 }
 </style>
