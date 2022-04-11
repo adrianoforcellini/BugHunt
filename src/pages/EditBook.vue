@@ -51,6 +51,7 @@ export default {
       this.isDeleting = true;
     },
     exitDeleting() {
+      this.form.id="";
       this.isStarting = true;
       this.isDeleting = false;
     }

@@ -37,7 +37,8 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
+    onSubmit(event) {
+      event.preventDefault();
       if (this.form.id === "") {
         return this.listAll();
       }
