@@ -32,6 +32,7 @@ export default {
         event.preventDefault();
         const { title, author, checked } = form;
         if (validate.validation(title, author)) {
+          this.$emit("exitEditing");
           const body = {
             title,
             author,
