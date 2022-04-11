@@ -1,7 +1,16 @@
 <template>
-  <div class="home">
+  <div class="add-book-page">
     <NavBar />
-    <Form :onSubmit="onSubmit" :placeholder="placeholder" />
+    <div class="form-bk">
+      <div class="form-spacement"></div>
+      <div class="form-container">
+        <Form
+          :onClick="onClick"
+          :placeholder="placeholder"
+          :addOrEdit="addOrEdit"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -16,7 +25,9 @@ export default {
   data() {
     return {
       placeholder: "Escreva aqui o título do livro",
-      onSubmit(id, form) {
+      addOrEdit: "Enviar",
+
+      onClick(id, form) {
         const { title, author, checked } = form;
         if (title.length < 3 || title.length > 60) {
           return alert("O título deve ter entre 3 e 60 caracteres.");
@@ -27,7 +38,7 @@ export default {
         const body = {
           title,
           author,
-          available: checked[0] === "available" ? true : false
+          available: checked
         };
         API.addBook(body)
           .then(alert("Livro Adicionado Á Lista"))
@@ -37,3 +48,24 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.form-bk {
+  background-image: url("../assets/library.jpg");
+  height: 100vh;
+  opacity: 0.8;
+  width: 100vw;
+}
+
+.form-container {
+  background-color: whitesmoke;
+  margin-left: 20vw;
+  padding: 5vh;
+  width: 60vw;
+}
+
+.form-spacement {
+  height: 15vh;
+  width: 100vw;
+}
+</style>

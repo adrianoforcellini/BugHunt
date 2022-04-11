@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <b-form @submit="onSubmit(id, form)" @reset="onReset" v-if="show">
+    <b-form @reset="onReset" v-if="show">
       <b-form-group id="input-group-1" label="Título" label-for="input-1">
         <b-form-input
           id="input-1"
@@ -15,20 +15,18 @@
           placeholder="Escreva aqui o nome do autor do livro."
         ></b-form-input>
       </b-form-group>
-      <b-form-group id="input-group-4">
-        <b-form-checkbox-group v-model="form.checked" id="checkboxes-4">
-          <b-form-checkbox value="available">Livro Disponível</b-form-checkbox>
+      <b-form-group >
+        <b-form-checkbox-group v-model="form.checked">
+          <b-form-checkbox >Livro Disponível</b-form-checkbox>
         </b-form-checkbox-group>
       </b-form-group>
-      <b-button type="submit" variant="primary">Enviar</b-button>
-      <b-button type="reset" variant="danger">Cancelar</b-button>
+      <b-button @click="onClick(id, form)" variant="primary">{{addOrEdit}}</b-button>
+      <b-button  type="reset" variant="danger">Recomeçar</b-button>
     </b-form>
   </div>
 </template>
 
 <script>
-import { minLength, maxLength } from 'vuelidate/lib/validators'
-
 export default {
   name: "Form",
   data() {
@@ -36,22 +34,23 @@ export default {
       form: {
         title: "",
         author: "",
-        checked: []
+        checked: true
       },
       show: true
     };
   },
   props: {
-    onSubmit: Function,
+    onClick: Function,
     id: String,
-    placeholder: String
+    placeholder: String,
+    addOrEdit: String
   },
   methods: {
     onReset(event) {
       event.preventDefault();
       this.form.title = "";
       this.form.author = "";
-      this.form.checked = [];
+      this.form.checked = false;
       // Trick to reset/clear native browser form validation state
       this.show = false;
       this.$nextTick(() => {

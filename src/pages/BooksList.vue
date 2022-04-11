@@ -1,12 +1,12 @@
 <template>
-  <div class="home">
+  <div class="books-list-page">
     <NavBar />
     <div class="form-container">
       <div class="form">
         <b-form @submit="onSubmit">
           <b-form-input
             v-model="form.id"
-            placeholder="Buscar pelo id ( digite o id e pressione enter)"
+            placeholder="      Buscar pelo id ( digite o id e pressione enter)"
           >
           </b-form-input>
         </b-form>
@@ -14,7 +14,10 @@
       <b-button @click="listAvailables">Listar Disponíveis</b-button>
       <b-button @click="listAll">Listar Todos</b-button>
     </div>
-    <b-table striped hover :items="books"></b-table>
+    <div class="table-container">
+      <div class="table-spacement"></div>  
+      <b-table :items="books" class="table-content"></b-table>
+    </div>
   </div>
 </template>
 
@@ -57,11 +60,33 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 .form-container {
   display: flex;
 }
 .form {
   width: 78vw;
+}
+.table-container {
+  background-color: rgba(37, 34, 34, 0.2);
+  background-image: url("../assets/books.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.6;
+  width: 100vw;
+  height: 100vh;
+}
+
+.table-content{
+  background-color: whitesmoke;
+  width: 80vw;
+  margin-left: 10vw;
+}
+
+.table-spacement{
+  height: 10vh;
+  width: 100vw;
+
 }
 </style>

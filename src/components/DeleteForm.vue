@@ -6,16 +6,21 @@
         :aria-describedby="ariaDescribedby"
         name="some-radios"
         value="deleteOne"
-        >Excluir Este Livro</b-form-radio
+        ><strong>Excluir Este Livro</strong></b-form-radio
       >
-      <b-form-radio
-        v-model="selected"
-        :aria-describedby="ariaDescribedby"
-        name="some-radios"
-        value="deleteAll"
-        >Excluir Todos os Livros</b-form-radio
+      <div class="radio-all">
+        <b-form-radio
+          v-model="selected"
+          :aria-describedby="ariaDescribedby"
+          name="some-radios"
+          value="deleteAll"
+        >
+          <strong>Excluir Todos os Livros</strong></b-form-radio
+        >
+      </div>
+      <b-button variant="danger" @click="onSubmit(id),$emit('exitDeleting')" class="delete-button"
+        >DELETAR</b-button
       >
-      <b-button variant="danger" @click="onSubmit(id)">DELETAR</b-button>
     </b-form-group>
   </div>
 </template>
@@ -39,15 +44,27 @@ export default {
       }
       if (this.selected === "deleteOne") {
         return API.deleteBook(id)
-          .then(({ data : {message} }) => alert(message))
+          .then(({ data: { message } }) => alert(message))
           .catch(error => alert(error));
       }
       if (this.selected === "deleteAll") {
         return API.deleteAll()
-          .then(({ data : {message} }) => alert(message))
+          .then(({ data: { message } }) => alert(message))
           .catch(error => alert(error));
       }
     }
   }
 };
 </script>
+
+<style scoped>
+
+.delete-button {
+  margin-top: 5vh;
+}
+
+.radio-all {
+  margin-top: 2vh;
+}
+
+</style>
