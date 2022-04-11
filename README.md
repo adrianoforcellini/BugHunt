@@ -1,41 +1,14 @@
 <img src="src/assets/gif.gif" alt="site-template" width="800"/><br></br>
 
-#### Seja bem vindo ao repositório do projeto BookHunt
+### Seja bem vindo ao repositório do projeto BookHunt
 ###  Como funciona:
 #### Abre seu terminal e baixe essa aplicação com o comando:
-#### git clone https://github.com/adrianoforcellini/Peak-Invest.git
-#### Em um terminal, entre na pasta do back-end e inicie seu servidor com o comando:
-### cd Peak-Invest/back-end && dotnet run
-#### Em outro terminal, entre na pasta do front-end , instale as dependencias e inicie seu servidor com o comando:
-### cd Peak-Invest/front-end && npm i && ng serve
+#### git clone https://github.com/adrianoforcellini/BugHunt.git 
+#### Entre na pasta do projeto, instale as dependências e inicie seu servidor com o comando:
+###  cd BugHunt && npm i && npm run dev                        
 
-## Agora basta acessar http://localhost:4200/ ;D
+## Agora basta acessar http://localhost:8080/ ;D
+### ( Por padrão,o Vue executará a aplicação nesta porta, mas se ela estiver ocupada ele escolherá outra.)
+### Por via das dúvidas, basta verificar o output do terminal:
+<img src="src/assets/8081.png" alt="site-template" width="500"/><br></br>
 
-
-# bug-hunt
-
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
