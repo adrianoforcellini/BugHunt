@@ -37,6 +37,7 @@ export default {
             author,
             available: checked
           };
+          this.clearInputs(event);
           return API.addBook(body)
             .then(alert("Livro Adicionado Á Lista"))
             .catch(error => alert(error));

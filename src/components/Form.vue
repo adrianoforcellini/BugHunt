@@ -1,6 +1,10 @@
 <template>
   <div class="home">
-    <b-form @submit="onSubmit(id, form)" @reset="onReset" v-if="show">
+    <b-form
+      @submit="onSubmit(id, form)"
+      @reset="clearInputs"
+      v-if="show"
+    >
       <b-form-group id="input-group-1" label="Título" label-for="input-1">
         <b-form-input
           id="input-1"
@@ -15,13 +19,13 @@
           placeholder="Escreva aqui o nome do autor do livro."
         ></b-form-input>
       </b-form-group>
-      <b-form-group >
+      <b-form-group>
         <b-form-checkbox-group v-model="form.checked">
-          <b-form-checkbox >Livro Disponível</b-form-checkbox>
+          <b-form-checkbox>Livro Disponível</b-form-checkbox>
         </b-form-checkbox-group>
       </b-form-group>
-      <b-button type="submit" variant="primary">{{addOrEdit}}</b-button>
-      <b-button  type="reset" variant="danger">Recomeçar</b-button>
+      <b-button type="submit" variant="primary">{{ addOrEdit }}</b-button>
+      <b-button type="reset" variant="danger">Recomeçar</b-button>
     </b-form>
   </div>
 </template>
@@ -46,16 +50,11 @@ export default {
     addOrEdit: String
   },
   methods: {
-    onReset(event) {
-      event.preventDefault();
+    clearInputs(event) {
+      event.preventDefault()
       this.form.title = "";
       this.form.author = "";
-      this.form.checked = false;
-      // Trick to reset/clear native browser form validation state
-      this.show = false;
-      this.$nextTick(() => {
-        this.show = true;
-      });
+      this.form.checked = true;
     },
   }
 };
