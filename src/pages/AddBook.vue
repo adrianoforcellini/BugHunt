@@ -5,7 +5,7 @@
       <div class="form-spacement"></div>
       <div class="form-container">
         <Form
-          :onClick="onClick"
+          :onSubmit="onSubmit"
           :placeholder="placeholder"
           :addOrEdit="addOrEdit"
         />
@@ -18,6 +18,7 @@
 import NavBar from "@/components/NavBar";
 import Form from "@/components/Form";
 import API from "@/services/APIs";
+import validate from "@/services/validation";
 
 export default {
   name: "AddBook",
@@ -27,22 +28,19 @@ export default {
       placeholder: "Escreva aqui o título do livro",
       addOrEdit: "Enviar",
 
-      onClick(id, form) {
+      onSubmit(id, form) {
+        event.preventDefault();
         const { title, author, checked } = form;
-        if (title.length < 3 || title.length > 60) {
-          return alert("O título deve ter entre 3 e 60 caracteres.");
+        if (validate.validation(title, author)) {
+          const body = {
+            title,
+            author,
+            available: checked
+          };
+          return API.addBook(body)
+            .then(alert("Livro Adicionado Á Lista"))
+            .catch(error => alert(error));
         }
-        if (author.length < 3 || author.length > 60) {
-          return alert("O nome do autor deve ter entre 3 e 60 caracteres.");
-        }
-        const body = {
-          title,
-          author,
-          available: checked
-        };
-        API.addBook(body)
-          .then(alert("Livro Adicionado Á Lista"))
-          .catch(error => alert(error));
       }
     };
   }

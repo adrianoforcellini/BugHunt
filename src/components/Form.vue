@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <b-form @reset="onReset" v-if="show">
+    <b-form @submit="onSubmit(id, form)" @reset="onReset" v-if="show">
       <b-form-group id="input-group-1" label="Título" label-for="input-1">
         <b-form-input
           id="input-1"
@@ -20,7 +20,7 @@
           <b-form-checkbox >Livro Disponível</b-form-checkbox>
         </b-form-checkbox-group>
       </b-form-group>
-      <b-button @click="onClick(id, form)" variant="primary">{{addOrEdit}}</b-button>
+      <b-button type="submit" variant="primary">{{addOrEdit}}</b-button>
       <b-button  type="reset" variant="danger">Recomeçar</b-button>
     </b-form>
   </div>
@@ -40,7 +40,7 @@ export default {
     };
   },
   props: {
-    onClick: Function,
+    onSubmit: Function,
     id: String,
     placeholder: String,
     addOrEdit: String

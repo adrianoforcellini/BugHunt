@@ -16,10 +16,11 @@
       </div>
       <div v-if="isEditing" class="form-container">
         <Form
-          :onClick="onClick"
+          :onSubmit="onSubmit"
           :id="form.id"
           :placeholder="placeholder"
           :addOrEdit="addOrEdit"
+          v-on:exitEditing="exitEditing"
         />
         <b-button variant="danger" @click="initDeleting" class="delete-button"
           >DELETAR</b-button
@@ -37,6 +38,7 @@ import NavBar from "@/components/NavBar";
 import Form from "@/components/Form";
 import DeleteForm from "@/components/DeleteForm";
 import API from "@/services/APIs";
+import validate from "@/services/validation";
 
 export default {
   name: "EditBook",
@@ -51,9 +53,14 @@ export default {
       this.isDeleting = true;
     },
     exitDeleting() {
-      this.form.id="";
+      this.form.id = "";
       this.isStarting = true;
       this.isDeleting = false;
+    },
+    exitEditing() {
+      this.form.id = "";
+      this.isStarting = true;
+      this.isEditing = false;
     }
   },
   data() {
@@ -68,21 +75,25 @@ export default {
       placeholder:
         "Para alterar apenas a disponibilidade, mantenha os inputs em branco e utilize apenas o checkbox.",
 
-      onClick(id, form) {
+      onSubmit(id, form) {
+        event.preventDefault();
         const { title, author, checked } = form;
         const body = {
           title,
           author,
           available: checked
         };
-        if (body.title.length === 0) {
+        if (body.title.length === 0 && body.author.length === 0) {
           return API.editAvailable(id, { available: body.available })
             .then(({ data: { message } }) => alert(message))
             .catch(error => alert(error));
         }
-        return API.editBook(id, body)
-          .then(({ data: { message } }) => alert(message))
-          .catch(error => alert(error));
+        if (validate.validation(body.title, body.author)) {
+          this.$emit("exitEditing");
+          return API.editBook(id, body)
+            .then(({ data: { message } }) => alert(message))
+            .catch(error => alert(error));
+        }
       }
     };
   }
